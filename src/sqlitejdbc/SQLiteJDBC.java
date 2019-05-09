@@ -26,7 +26,10 @@ public class SQLiteJDBC {
        Métodos met = new Métodos();
        // met.connect();
        // met.createNewDatabase("prueba");
-       met.createNewTable("prueba");
+//       met.createNewTable("prueba");
+        //especificamos las lineas a añadir a la tabla
+        met.insert("6463", "Eduardo", 8);
+        met.insert("6053", "Rafa", 7);
     }
     
 }

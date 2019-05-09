@@ -5,11 +5,8 @@
  */
 package sqlitejdbc;
 
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+
 
 /**
  *
@@ -20,7 +17,7 @@ public class Métodos {
     /**
      * Conectar a DB, haciendo clase interna
      */
-    public static void connect() {
+    public static Connection connect() {
         
         Connection conn = null;
         try {
@@ -42,6 +39,7 @@ public class Métodos {
                 System.out.println(ex.getMessage());
             }
         }
+        return conn;
     }
     
     /**
@@ -91,4 +89,37 @@ public class Métodos {
         }
     }
     
+    public void insert(String id, String name, int nota) {
+        //Sintaxis del insert
+        String sql = "INSERT INTO DAM1(id,name,nota) VALUES(?,?,?)";
+        Connection conn = null;
+        
+        try {
+            // parámetro DB
+            String url = "jdbc:sqlite:/home/local/DANIELCASTELAO/ecollazodominguez/NetBeansProjects/SQLiteJDBC/db/prueba.db";
+            // Creando conexión a la DB
+            conn = DriverManager.getConnection(url);
+            
+            System.out.println("La conexión a SQLite ha sido establecida");
+            
+            PreparedStatement pstmt = conn.prepareStatement(sql); {
+            pstmt.setString(1, id);
+            pstmt.setString(2, name);
+            pstmt.setInt(3, nota);
+            pstmt.executeUpdate();
+
+    }
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+}
+    }
 }
