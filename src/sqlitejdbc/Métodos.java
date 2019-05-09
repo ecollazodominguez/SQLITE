@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -59,6 +60,32 @@ public class Métodos {
                 System.out.println("Una nueva DB ha sido creada");
             }
  
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    /**
+     * Crear una tabla en la DB
+     *
+     */
+    public static void createNewTable(String fileName) {
+        // SQLite connection string
+        String url = "jdbc:sqlite:/home/local/DANIELCASTELAO/ecollazodominguez/NetBeansProjects/SQLiteJDBC/db/" + fileName+ ".db";
+        
+        // Para crear una tabla usamos esta sintaxis
+        String sql = "CREATE TABLE IF NOT EXISTS DAM1 (\n"
+                + "	id integer PRIMARY KEY,\n"
+                + "	name text NOT NULL,\n"
+                + "	nota integer\n"
+                + ");";
+        
+        // Conectamos a la DB
+        try (Connection conn = DriverManager.getConnection(url);
+         // Creamos un "Statement" que cogerá la sintaxis sql
+                Statement stmt = conn.createStatement()) {
+            // Creamos la tabla
+            stmt.execute(sql);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

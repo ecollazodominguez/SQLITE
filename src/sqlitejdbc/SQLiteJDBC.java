@@ -23,9 +23,10 @@ public class SQLiteJDBC {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Métodos met = new Métodos();
-        met.connect();
-        met.createNewDatabase("prueba");
+       Métodos met = new Métodos();
+       // met.connect();
+       // met.createNewDatabase("prueba");
+       met.createNewTable("prueba");
     }
     
 }
