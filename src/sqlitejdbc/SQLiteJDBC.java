@@ -25,7 +25,7 @@ public class SQLiteJDBC {
     public static void main(String[] args) {
         Métodos met = new Métodos();
         met.connect();
-
+        met.createNewDatabase("prueba");
     }
     
 }

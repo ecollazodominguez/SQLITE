@@ -43,6 +43,25 @@ public class Métodos {
         }
     }
     
-
+    /**
+     * Conectar y crear database
+     *
+     * @param fileName nombre de la database
+     */
+    public static void createNewDatabase(String fileName) {
+ 
+        String url = "jdbc:sqlite:/home/local/DANIELCASTELAO/ecollazodominguez/NetBeansProjects/SQLiteJDBC/db/" + fileName+ ".db";
+ 
+        try (Connection conn = DriverManager.getConnection(url)) {
+            if (conn != null) {
+                DatabaseMetaData meta = conn.getMetaData();
+                System.out.println("The driver name is " + meta.getDriverName());
+                System.out.println("Una nueva DB ha sido creada");
+            }
+ 
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     
 }
