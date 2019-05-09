@@ -102,6 +102,7 @@ public class Métodos {
             
             System.out.println("La conexión a SQLite ha sido establecida");
             
+            //añadimos los parametros
             PreparedStatement pstmt = conn.prepareStatement(sql); {
             pstmt.setString(1, id);
             pstmt.setString(2, name);

@@ -27,6 +27,8 @@ public class SQLiteJDBC {
        // met.connect();
        // met.createNewDatabase("prueba");
 //       met.createNewTable("prueba");
+
+
         //especificamos las lineas a añadir a la tabla
         met.insert("6463", "Eduardo", 8);
         met.insert("6053", "Rafa", 7);
