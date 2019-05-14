@@ -33,6 +33,7 @@ public class SQLiteJDBC {
 //        met.insert("6461", "Eduard", 10);
 //        met.insert("6057", "Rafi", 9);
         met.selectAll();
+        met.update("6057", "Paco", 0);
     }
     
 }

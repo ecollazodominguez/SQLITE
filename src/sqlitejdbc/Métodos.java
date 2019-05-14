@@ -117,4 +117,21 @@ public class Métodos {
             System.out.println(e.getMessage());
         }
     }
+        
+        public void update(String id, String name, double nota) {
+        String sql = "UPDATE dam1 SET name = ? , "
+                + "nota = ? "
+                + "WHERE id = ?";
+ 
+        try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+            pstmt.setString(1, name);
+            pstmt.setDouble(2, nota);
+            pstmt.setString(3, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
