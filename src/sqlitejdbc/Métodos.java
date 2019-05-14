@@ -17,27 +17,19 @@ public class Métodos {
     /**
      * Conectar a DB, haciendo clase interna
      */
-    public static Connection connect() {
-        
+    public Connection connect() {
+
+        // parámetro DB
+        String url = "jdbc:sqlite:/home/local/DANIELCASTELAO/ecollazodominguez/NetBeansProjects/SQLiteJDBC/db/prueba.db";
         Connection conn = null;
+        // Creando conexión a la DB
         try {
-            // parámetro DB
-            String url = "jdbc:sqlite:/home/local/DANIELCASTELAO/ecollazodominguez/NetBeansProjects/SQLiteJDBC/db/chinook.db";
-            // Creando conexión a la DB
             conn = DriverManager.getConnection(url);
-            
+
             System.out.println("La conexión a SQLite ha sido establecida");
-            
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        } finally {
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
         }
         return conn;
     }
@@ -92,35 +84,37 @@ public class Métodos {
     public void insert(String id, String name, int nota) {
         //Sintaxis del insert
         String sql = "INSERT INTO DAM1(id,name,nota) VALUES(?,?,?)";
-        Connection conn = null;
         
-        try {
-            // parámetro DB
-            String url = "jdbc:sqlite:/home/local/DANIELCASTELAO/ecollazodominguez/NetBeansProjects/SQLiteJDBC/db/prueba.db";
-            // Creando conexión a la DB
-            conn = DriverManager.getConnection(url);
-            
-            System.out.println("La conexión a SQLite ha sido establecida");
-            
-            //añadimos los parametros
-            PreparedStatement pstmt = conn.prepareStatement(sql); {
+        //conectamos a la BD
+        try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            //añadimos al statement los valores por orden
             pstmt.setString(1, id);
             pstmt.setString(2, name);
-            pstmt.setInt(3, nota);
+            pstmt.setDouble(3, nota);
             pstmt.executeUpdate();
-
-    }
-            
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        } finally {
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
+        }
+    }
+    
+    
+        public void selectAll(){
+            //sintaxis de la consulta
+        String sql = "SELECT id, name, nota FROM dam1";
+        
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            
+            // recorre el resultado y lo muestra
+            while (rs.next()) {
+                System.out.println(rs.getInt("id") +  "\t" + 
+                                   rs.getString("name") + "\t" +
+                                   rs.getDouble("nota"));
             }
-}
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

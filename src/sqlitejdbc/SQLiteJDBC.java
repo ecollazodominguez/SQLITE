@@ -11,7 +11,7 @@ import java.sql.*;
  *
  * @author ecollazodominguez
  * sqltutorial.net para tutoriales
- * sqlonline.com para visualizar el .db
+ * sqliteonline.com para visualizar el .db
  */
 public class SQLiteJDBC {
     
@@ -30,8 +30,9 @@ public class SQLiteJDBC {
 
 
         //especificamos las lineas a añadir a la tabla
-        met.insert("6463", "Eduardo", 8);
-        met.insert("6053", "Rafa", 7);
+//        met.insert("6461", "Eduard", 10);
+//        met.insert("6057", "Rafi", 9);
+        met.selectAll();
     }
     
 }
