@@ -50,10 +50,10 @@ public class SQLiteJDBC {
                    met.selectAll();
                    break;
                case 5:
-                   met.update(JOptionPane.showInputDialog("ID alumno"), JOptionPane.showInputDialog("Nome alumno"), Integer.parseInt(JOptionPane.showInputDialog("Nota")));
+                   met.update(JOptionPane.showInputDialog("ID alumno a cambiar"), JOptionPane.showInputDialog("Nome alumno nuevo"), Integer.parseInt(JOptionPane.showInputDialog("Nota nueva")));
                    break;
                case 6:
-                   met.delete(JOptionPane.showInputDialog("ID alumno"));
+                   met.delete(JOptionPane.showInputDialog("ID alumno a borrar"));
                    break;
            }
        }while(opcion>6);
