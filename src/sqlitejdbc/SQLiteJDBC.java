@@ -6,6 +6,7 @@
 package sqlitejdbc;
 
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,19 +23,40 @@ public class SQLiteJDBC {
     /**
      * @param args the command line arguments
      */
+    @SuppressWarnings("empty-statement")
     public static void main(String[] args) {
        Métodos met = new Métodos();
-       // met.connect();
-       // met.createNewDatabase("prueba");
-//       met.createNewTable("prueba");
+       int opcion;
+       do{
+       opcion=Integer.parseInt(JOptionPane.showInputDialog("SQLITEJDBC"
+                                              +"\n1- Crear BD"
+                                              +"\n2- Crear tabla(dam1)"
+                                              +"\n3- Crear linea(dam1)"
+                                              +"\n4- Consulta de tabla general(dam1)"
+                                              +"\n5- Actualizar linea(dam1)"
+                                              +"\n6- Borrar linea(dam1)"));
+       
+           switch (opcion){
+               case 1:
+                   Métodos.createNewDatabase(JOptionPane.showInputDialog("Nombra da DB"));
+                   break;
+               case 2:
+                   Métodos.createNewTable(JOptionPane.showInputDialog("Nombra da DB"));
+                   break;
+               case 3:
+                   met.insert(JOptionPane.showInputDialog("ID alumno"), JOptionPane.showInputDialog("Nome alumno"), Integer.parseInt(JOptionPane.showInputDialog("Nota")));
+                   break;
+               case 4:
+                   met.selectAll();
+                   break;
+               case 5:
+                   met.update(JOptionPane.showInputDialog("ID alumno"), JOptionPane.showInputDialog("Nome alumno"), Integer.parseInt(JOptionPane.showInputDialog("Nota")));
+                   break;
+               case 6:
+                   met.delete(JOptionPane.showInputDialog("ID alumno"));
+                   break;
+           }
+       }while(opcion>6);
 
-
-        //especificamos las lineas a añadir a la tabla
-//        met.insert("6461", "Eduard", 10);
-//        met.insert("6057", "Rafi", 9);
-        met.selectAll();
-//        met.update("6057", "Paco", 0);
-        met.delete("6461");
     }
-    
 }

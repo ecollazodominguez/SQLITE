@@ -109,7 +109,7 @@ public class Métodos {
             
             // recorre el resultado y lo muestra
             while (rs.next()) {
-                System.out.println(rs.getInt("id") +  "\t" + 
+                System.out.println(rs.getString("id") +  "\t" + 
                                    rs.getString("name") + "\t" +
                                    rs.getDouble("nota"));
             }
