@@ -134,4 +134,19 @@ public class Métodos {
             System.out.println(e.getMessage());
         }
     }
+            public void delete(String id) {
+        String sql = "DELETE FROM dam1 WHERE id = ?";
+ 
+        try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+            // set the corresponding param
+            pstmt.setString(1, id);
+            // execute the delete statement
+            pstmt.executeUpdate();
+ 
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
